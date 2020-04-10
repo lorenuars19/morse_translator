@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 18:42:05 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 22:40:58 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,18 @@ size_t		dict_size(t_dict *chain)
 
 void		del_node(t_dict *node)
 {
-	if (node)
-	{
+	if (node->word)
 		free(node->word);
-		node->word = NULL;
+	node->word = NULL;
+	if (node->symb)
 		free(node->symb);
-		node->symb = NULL;
+	node->symb = NULL;
+	if (node->next)
 		free(node->next);
-		node->next = NULL;
+	node->next = NULL;
+	if (node)
 		free(node);
-		node = NULL;
-	}
+	node = NULL;
 }
 
 void		clear_dict(t_dict **chain)

@@ -6,22 +6,27 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 20:17:29 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 22:38:17 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	_MORSLATOR_H
 # define _MORSLATOR_H
 
-# define BR getchar();
-# define D printf("%d %s\n",__LINE__, __FUNCTION__); getchar();
+# define BR printf("%d %s\n",__LINE__, __FUNCTION__);getchar();
+# define D printf("%d %s\n",__LINE__, __FUNCTION__);
+
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64
 # endif
 
-# define BLANK "\t\v\f "
-# define MORSE "\t\v\f /.-"
+# define BLANK "\t\v\f\r "
+# define MORSE_DICT ".-"
+# define MORSE "\t\v\f\r /.-"
 
 # include <stdio.h>
 # include <string.h>
@@ -47,10 +52,8 @@ size_t		str_revlento(char *s, char *t);
 char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
-int			is_not(char c, char *t);
-size_t		has_to(char *s, char *t);
-size_t		revhas_to(char *s, char *t);
-void	putstr_fd(int fd, char *s);
+int			is_any(char c, char *t);
+void		putstr_fd(int fd, char *s);
 int			err(char *s);
 void		*err_ptr(char *s);
 
