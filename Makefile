@@ -6,13 +6,13 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/10 15:29:44 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/10 18:41:13 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ================================ VARIABLES ================================= #
 
-NAME	= morslator
+NAME	= morsec
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
@@ -45,12 +45,12 @@ all : $(NAME)
 
 #	linking
 $(NAME)	: $(OBJS)
-	@printf "$(WI)&&& Linking $(OBJ) to $(NAME)$(RC)"
+	@printf "\n$(WI)&&& Linking $(OBJ) to $(NAME)$(RC)"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 #	compiling
 $(OBJS) : $(SRCS)
-	@printf "$(GR)+++ Compiling $(SRC) to $(OBJ)$(RC)"
+	@printf "\n$(GR)+++ Compiling $(SRC) to $(OBJ)$(RC)"
 	@mkdir -p $(OBJDIR)
 	@cd $(OBJDIR) && $(CC) $(CFLAGS) -I ../$(INCDIR) -c $(CSRCS)
 

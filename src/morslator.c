@@ -6,11 +6,11 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 16:34:15 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:41:34 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "morslator.h"
+#include "morsec.h"
 
 int		morslator(int direction, char *input)
 {
@@ -40,7 +40,7 @@ int		main(int argc, char *argv[])
 		if (morslator(0, argv[1]))
 			return (1);
 	}
-	else if (argc == 3 && strncmp(argv[1], "-r", 2) == 0)
+	else if (argc == 3 && strncmp(argv[1], "-r", 3) == 0)
 	{
 		if (morslator(1, argv[2]))
 			return (1);

@@ -6,23 +6,21 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 16:32:52 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:42:05 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "morslator.h"
+#include "morsec.h"
 
-t_dict	*new_node(char *word, char *symbol)
+t_dict	*new_node(char *word, char *symb)
 {
 	t_dict	*new;
 
 	new = NULL;
 	if (!(new = (t_dict*)malloc(sizeof(t_dict))))
-	{
 		return (NULL);
-	}
 	new->word = word;
-	new->symb = symbol;
+	new->symb = symb;
 	new->next = NULL;
 	return (new);
 }
