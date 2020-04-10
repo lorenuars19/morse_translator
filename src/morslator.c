@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 15:41:59 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 16:34:15 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		morslator(int direction, char *input)
 {
-	t_dict dict;
+	t_dict *dict;
 
 	if ((dict = get_dict("dictionary.txt")))
 		return (1);
@@ -22,7 +22,7 @@ int		morslator(int direction, char *input)
 	if (direction == 1)
 	{
 	 	puts("Reverse");
-		puts(strrev(input));
+		puts(input);
 	}
 
 	if (direction == 0)

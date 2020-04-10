@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 16:24:35 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 16:32:52 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void		del_node(t_dict *node)
 {
 	if (node)
 	{
-		free(node->str);
-		node->str = NULL;
+		free(node->word);
+		node->word = NULL;
+		free(node->symb);
+		node->symb = NULL;
 		free(node->next);
 		node->next = NULL;
 		free(node);
@@ -80,7 +82,7 @@ void		clear_dict(t_dict **chain)
 	while (chain && *chain)
 	{
 		tmp = (*chain)->next;
-		del_tchain(*chain);
+		del_node(*chain);
 		*chain = tmp;
 	}
 }
@@ -94,17 +96,17 @@ void		print_dict(t_dict *chain)
 	i = 0;
 	if (!tmp)
 	{
-		verbose("NULL");
+		puts("NULL");
 		return ;
 	}
-	verbose("\nChain :");
+	puts("\nChain :");
 	while (tmp)
 	{
-		verbose("<%lu> \t [node * %p | word \"%s\" | symbol \"%s\" "\
+		printf("<%lu> \t [node * %p | word \"%s\" | symbol \"%s\" "\
 		"next *> %p]\n", \
 		i, tmp, tmp->word, tmp->symb, tmp->next);
 		i++;
 		tmp = tmp->next;
 	}
-	verbose(">> Chain of %lu node(s) <<\n", dict_size(chain));
+	printf(">> Chain of %lu node(s) <<\n", dict_size(chain));
 }
