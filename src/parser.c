@@ -6,6 +6,16 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:58 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 14:49:04 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 15:48:21 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "morslator.h"
+
+t_dict	get_dict(char *filename)
+{
+	t_dict dict;
+
+	dict = (t_dict){"", "", NULL};
+	return (NULL);
+}
