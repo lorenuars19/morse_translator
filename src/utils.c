@@ -1,34 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/10 13:36:58 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 16:20:09 by lorenuar         ###   ########.fr       */
+/*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
+/*   Updated: 2020/04/10 16:24:22 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "morslator.h"
-#include "get_next_line.h"
-
-t_dict	*get_dict(char *filename)
-{
-	t_dict	curr;
-	t_dict	dict;
-	char	*line;
-	int		fd;
-
-	curr = (t_dict){NULL,NULL,NULL};
-	if (!(fd = open(filename, O_RDONLY)))
-		return (NULL);
-	while (get_next_line(fd, &line))
-	{
-
-	}
-
-
-
-	return (NULL);
-}
