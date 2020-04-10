@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   morslator.c                                        :+:      :+:    :+:   */
+/*   morsec.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 18:41:34 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 20:16:26 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int		morslator(int direction, char *input)
 {
 	t_dict *dict;
 
-	if ((dict = get_dict("dictionary.txt")))
-		return (1);
+	if ((dict = get_dict("dictionary_nope.txt")))
+		return (err("DICT ERROR"));
 
 	if (direction == 1)
 	{

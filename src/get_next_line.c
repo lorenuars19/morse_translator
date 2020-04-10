@@ -6,11 +6,11 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 22:57:04 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 16:36:50 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/10 19:01:57 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "morslator.h"
+#include "morsec.h"
 
 size_t		hasto(char *s, char c)
 {
