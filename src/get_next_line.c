@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 22:57:04 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 12:51:23 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 16:44:49 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		get_next_line(int fd, char **line)
 	}
 	ret = hasto(buf, '\n');
 	if (ret == 0)
-	
+
 		return (0);
 	while (buf[ret] && ret)
 		buf[i++] = buf[ret++];

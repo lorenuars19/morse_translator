@@ -6,15 +6,15 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 15:57:17 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 17:48:28 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	MORSLATOR_H
 # define MORSLATOR_H
 
-# define BR printf("%d %s\n",__LINE__, __FUNCTION__);getchar();
-# define D printf("%d %s\n",__LINE__, __FUNCTION__);
+# define BR printf("%d in %s\n",__LINE__, __FUNCTION__);getchar();
+# define D printf("%d in %s\n",__LINE__, __FUNCTION__);
 
 # ifndef DEBUG
 #  define DEBUG 0
@@ -41,6 +41,7 @@ struct s_dict
 	char				*symb;
 };
 typedef struct s_dict 	t_dict;
+
 struct s_chain
 {
 	void				*data;
@@ -56,6 +57,12 @@ void		del_dict(t_dict *dict);
 void		clear_dict(t_chain **chain);
 void		print_chain_dict(t_chain *chain);
 void		print_node_dict(t_chain *chain);
+
+/*
+** trsl chain
+*/
+void		*append_node_trsl(t_chain **chain, char* trsl);
+void		print_chain_trsl(t_chain *chain);
 
 /*
 ** t_chain
@@ -94,7 +101,7 @@ void		str_del(char **tofree);
 /*
 ** core functions
 */
-char		*translator(t_chain *dict);
+char		*translator(t_chain *dict, char *input);
 t_chain		*get_dict(char *filename);
 
 /*
@@ -102,9 +109,13 @@ t_chain		*get_dict(char *filename);
 */
 size_t	g_num_alloc;
 size_t	g_num_free;
+
 void	num_alloc(char *s);
 void	num_free(char *s);
 
-
+# define malloc(x) my_malloc(x)
+# define free(x) my_free(x)
+void	*my_malloc(size_t size);
+void	my_free(void *ptr);
 
 #endif

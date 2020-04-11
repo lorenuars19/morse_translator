@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 16:05:02 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 16:55:54 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ char	*str_dupto(char *s, char *t)
 	i = 0;
 	lento = str_lento(s, t);
 	if (!(new = malloc(lento + 1 * sizeof(char))))
-	return (NULL);
+	{
+		return (NULL);
+	}
 	while (s && *s && i < lento)
 	new[i++] = *s++;
 	new[i] = '\0';
@@ -72,7 +74,6 @@ char	*str_revdupto(char *s, char *t)
 	{
 		return (NULL);
 	}
-
 	while (s && *s && !is_any(*s, t))
 	s++;
 	while (s && *s && is_any(*s, t))
@@ -142,21 +143,6 @@ void	str_del(char **tofree)
 	if (tofree && *tofree)
 	{
 		free(*tofree);
-		num_free("del_dict_word");
 		*tofree = NULL;
 	}
-}
-
-void	num_alloc(char *s)
-{
-	g_num_alloc++;
-	printf("%s > Alloc %lu\n", s, g_num_alloc);
-	(void)s;
-}
-
-void	num_free(char *s)
-{
-	g_num_free++;
-	printf("%s > Free %lu\n", s, g_num_free);
-	(void)s;
 }
