@@ -6,12 +6,12 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 10:33:57 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 12:01:16 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	_MORSLATOR_H
-# define _MORSLATOR_H
+#ifndef	MORSLATOR_H
+# define MORSLATOR_H
 
 # define BR printf("%d %s\n",__LINE__, __FUNCTION__);getchar();
 # define D printf("%d %s\n",__LINE__, __FUNCTION__);
@@ -48,33 +48,53 @@ struct s_chain
 };
 typedef struct s_chain 	t_chain;
 
-t_chain	*new_node(void *data);
+/*
+** t_dict
+*/
+t_dict		*new_dict(char *word, char *symb);
+void		del_dict(t_dict *dict);
+void		clear_dict(t_chain **chain);
+void		print_chain_dict(t_chain *chain);
+void		print_node_dict(t_chain *chain);
+
+/*
+** t_chain
+*/
+t_chain		*new_node(void *data);
 void		*append_node(t_chain **chain, t_chain *node);
 size_t		chain_size(t_chain *chain);
 void		del_node(t_chain *node);
-void		clear_chain(t_chain **chain);
-void		print_chain(t_chain *chain);
-void		print_node(t_chain *chain);
 
+/*
+** get_next_line
+*/
 int			get_next_line(int fd, char **line);
 size_t		hasto(char *s, char c);
 char		*jointo(char *s1, char *s2, char **tofree);
 
+/*
+** string utils
+*/
 size_t		str_lento(char *s, char *t);
 size_t		str_revlento(char *s, char *t);
 char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
 int			is_any(char c, char *t);
+
+/*
+** print utils
+*/
+void		putchar_fd(int fd, char c);
 void		putstr_fd(int fd, char *s);
 int			err(char *s);
 void		*err_ptr(char *s);
 void		str_del(char **tofree);
 
+/*
+** core functions
+*/
 char		*translator(t_chain *dict);
-
-
-
-t_chain		*get_chain(char *filename);
+t_chain		*get_dict(char *filename);
 
 #endif

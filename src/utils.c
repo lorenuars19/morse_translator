@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 09:41:07 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 11:32:45 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	putchar_fd(int fd, char c)
 {
 	write(fd, &c, 1);
 }
+
 void	putstr_fd(int fd, char *s)
 {
 	write(fd, s, str_len(s));
@@ -123,6 +124,7 @@ int		err(char *s)
 	putchar_fd(2, '\n');
 	return (1);
 }
+
 void	*err_ptr(char *s)
 {
 	putstr_fd(2, "\033[31;1m");
@@ -131,6 +133,7 @@ void	*err_ptr(char *s)
 	putchar_fd(2, '\n');
 	return (NULL);
 }
+
 void		str_del(char **tofree)
 {
 	free(*tofree);

@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 10:35:45 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 11:11:50 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		morsec(int direction, char *input)
 
 	dict = NULL;
 	resl = NULL;
-	if (!(dict = get_chain("dictionary.txt")))
+	if (!(dict = get_dict("dictionary.txt")))
 	{
-		clear_chain(&dict);
+		clear_dict(&dict);
 		return (err("DICT ERROR"));
 	}
 	if (DEBUG)
-		print_chain(dict);
+		print_chain_dict(dict);
 	if (direction == 1)
 	{
 		if ((resl = translator(dict)) == NULL)
@@ -39,7 +39,7 @@ int		morsec(int direction, char *input)
 		puts("Morse -- ");
 		puts(input);
 	}
-	clear_chain(&dict);
+	clear_dict(&dict);
 	return (0);
 }
 
