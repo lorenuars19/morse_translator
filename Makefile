@@ -6,7 +6,7 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/10 22:47:42 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/11 09:04:43 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
 ifeq ($(DEBUG),1)
-CFLAGS	+= -g3 -fsanitize=address -fsanitize-recover=all -fsanitize=leak
+CFLAGS	+= -g3 -fsanitize=address -fsanitize=leak
 CFLAGS	+= -Wunused -fdiagnostics-color=always
 CFLAGS	+= -D DEBUG=1
 endif

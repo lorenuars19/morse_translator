@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 22:57:04 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 19:01:57 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 08:59:54 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ char	*jointo(char *s1, char *s2, char **tofree)
 		a[i++] = *s2++;
 	a[i] = '\0';
 	if (tofree && *tofree)
+	{
 		free(*tofree);
+		*tofree = NULL;
+	}
 	return (a);
 }
 

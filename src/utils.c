@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 22:13:49 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 09:41:07 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	str_len(char *s)
 
 	len = 0;
 	while (s && s[len])
-		len++;
+	len++;
 	return (len);
 }
 
@@ -28,7 +28,7 @@ size_t	str_lento(char *s, char *t)
 
 	lento = 0;
 	while (s && s[lento] && !is_any(s[lento], t))
-		lento++;
+	lento++;
 	return (lento);
 }
 
@@ -40,7 +40,7 @@ size_t	str_revlento(char *s, char *t)
 	slen = str_lento(s, '\0');
 	lento = slen;
 	while (s && s[lento] && is_only(s[lento], t))
-		lento--;
+	lento--;
 	return (lento);
 }
 
@@ -53,9 +53,9 @@ char	*str_dupto(char *s, char *t)
 	i = 0;
 	lento = str_lento(s, t);
 	if (!(new = malloc(lento + 1 * sizeof(char))))
-		return (NULL);
+	return (NULL);
 	while (s && *s && i < lento)
-		new[i++] = *s++;
+	new[i++] = *s++;
 	new[i] = '\0';
 	return (new);
 }
@@ -69,13 +69,13 @@ char	*str_revdupto(char *s, char *t)
 	lento = str_revlento(s, t);
 	i = 0;
 	if (!(new = malloc(lento + 1 * sizeof(char))))
-		return (NULL);
+	return (NULL);
 	while (s && *s && !is_any(*s, t))
-		s++;
+	s++;
 	while (s && *s && is_any(*s, t))
-		s++;
+	s++;
 	while (s && *s && i < lento && !is_any(*s, t))
-		new[i++] = *s++;
+	new[i++] = *s++;
 	new[i] = '\0';
 	return (new);
 }
@@ -130,4 +130,9 @@ void	*err_ptr(char *s)
 	putstr_fd(2, "\033[0m");
 	putchar_fd(2, '\n');
 	return (NULL);
+}
+void		str_del(char **tofree)
+{
+	free(*tofree);
+	*tofree = NULL;
 }

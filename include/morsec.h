@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/10 22:38:17 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 10:33:57 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,24 @@
 
 struct s_dict
 {
-	char			*word;
-	char			*symb;
-	struct s_dict	*next;
+	char				*word;
+	char				*symb;
 };
-typedef struct s_dict t_dict;
+typedef struct s_dict 	t_dict;
+struct s_chain
+{
+	void				*data;
+	struct s_chain 		*next;
+};
+typedef struct s_chain 	t_chain;
+
+t_chain	*new_node(void *data);
+void		*append_node(t_chain **chain, t_chain *node);
+size_t		chain_size(t_chain *chain);
+void		del_node(t_chain *node);
+void		clear_chain(t_chain **chain);
+void		print_chain(t_chain *chain);
+void		print_node(t_chain *chain);
 
 int			get_next_line(int fd, char **line);
 size_t		hasto(char *s, char c);
@@ -56,14 +69,12 @@ int			is_any(char c, char *t);
 void		putstr_fd(int fd, char *s);
 int			err(char *s);
 void		*err_ptr(char *s);
+void		str_del(char **tofree);
 
-t_dict		*new_node(char *word, char *symb);
-void		append_node(t_dict **chain, t_dict *node);
-size_t		dict_size(t_dict *chain);
-void		del_node(t_dict *node);
-void		clear_dict(t_dict **chain);
-void		print_dict(t_dict *chain);
+char		*translator(t_chain *dict);
 
-t_dict		*get_dict(char *filename);
+
+
+t_chain		*get_chain(char *filename);
 
 #endif
