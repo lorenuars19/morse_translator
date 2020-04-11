@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:48:28 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 17:55:06 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		print_node_dict(t_chain *chain);
 /*
 ** trsl chain
 */
-void		*append_node_trsl(t_chain **chain, char* trsl);
 void		print_chain_trsl(t_chain *chain);
 
 /*

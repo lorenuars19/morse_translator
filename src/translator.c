@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:48:01 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 18:03:12 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ char		*translator(t_chain *dict, char *input)
 	while (input && *input)
 	{
 		tmp = str_dupto(input, BLANK);
-		printf("Tmp : '%s'", tmp);
+		printf("Tmp : '%s'\n", tmp);
 		append_node(&trsl, new_node(tmp));
-		while (is_only(*input, BLANK))
+		while (!is_any(*input, BLANK))
 		{
 			input++;
+			printf("input : ''%s''\n", input);
 		}
 	}
 	(void)dict;
