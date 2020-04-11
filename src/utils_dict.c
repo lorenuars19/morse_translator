@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:53:28 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 18:15:05 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void		print_node_dict(t_chain *chain)
 	}
 	node = (t_dict *)tmp->data;
 	puts("\nNode :");
-		printf("[node * %p | word \"%s\" | symbol \"%s\" "\
-		"next *> %p]\n", \
-		tmp, node->word, node->symb, tmp->next);
+	printf("[node * %p | word \"%s\" | symbol \"%s\" "\
+	"next *> %p]\n", \
+	tmp, node->word, node->symb, tmp->next);
 }
 
 void		print_chain_dict(t_chain *chain)

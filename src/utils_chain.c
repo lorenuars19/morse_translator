@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:50:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:59:20 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 18:46:22 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,16 @@ void		*append_node(t_chain **chain, t_chain *node)
 	if (*chain)
 	{
 		tmp = *chain;
-		while (
-			node &&
-			tmp &&
-			tmp->next
-		)
+		while (node && tmp && tmp->next)
 		{
 			tmp = tmp->next;
 		}
 		tmp->next = node;
 	}
 	else if (chain)
+	{
 		*chain = node;
+	}
 	return (node);
 }
 
@@ -77,4 +75,15 @@ void	del_node(t_chain *node)
 		free(node);
 		node = NULL;
 	}
+}
+
+void print_node(t_chain *node)
+{
+	if (!node)
+	{
+		puts("NULL NODe");
+		return ;
+	}
+	printf("Node : <%p> | data %p | data \"%s\" | > next %p\n", \
+	node, node->data, (char *)node->data, node->next);
 }

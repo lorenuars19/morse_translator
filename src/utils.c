@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 16:55:54 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 19:11:42 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,52 @@ char	*str_revdupto(char *s, char *t)
 	return (new);
 }
 
+int		is_lower(char c)
+{
+	return (((c >= 'a' && c <= 'z') ? 1 : 0));
+}
+
+int		is_upper(char c)
+{
+	return (((c >= 'A' && c <= 'Z') ? 1 : 0));
+}
+
+char	to_lower(char c)
+{
+	return(((is_lower(c)) ? c : c - ('a' - 'A')));
+}
+
+char	to_upper(char c)
+{
+	return(((is_upper(c)) ? c : c + ('a' - 'A')));
+}
+
+int		is_letter(char c)
+{
+	if (is_lower(c) && c == to_upper(c))
+	{
+		return (1);
+	}
+	else if (is_upper(c) && c == to_lower(c))
+	{
+		return (1);
+	}
+	return (0);
+}
+
+char	toggle_case(char c)
+{
+	if (is_lower(c) && c == to_upper(c))
+	{
+		return (to_upper(c));
+	}
+	else if (is_upper(c) && c == to_lower(c))
+	{
+		return (to_lower(c));
+	}
+	return (0);
+}
+
 int		is_only(char c, char *t)
 {
 	while (t && *t)
@@ -145,4 +191,22 @@ void	str_del(char **tofree)
 		free(*tofree);
 		*tofree = NULL;
 	}
+}
+
+size_t	str_cmp(char *s1, char *s2)
+{
+	size_t 	i;
+	size_t 	slen1;
+	size_t	slen2;
+	size_t 	size;
+
+	slen1 = str_len(s1);
+	slen2 = str_len(s2);
+	size = ((slen2 > slen1) ? slen1 : slen2);
+	i = 0;
+	while (s1 && s2 && s1[i] && s2[i] && s1[i] == s2[i] && i <= size)
+		i++;
+	if (i == size)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

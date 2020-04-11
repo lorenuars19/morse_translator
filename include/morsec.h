@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:55:06 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 19:22:48 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct s_chain
 typedef struct s_chain 	t_chain;
 
 /*
-** t_dict
+** dict utils
 */
 t_dict		*new_dict(char *word, char *symb);
 void		del_dict(t_dict *dict);
@@ -59,17 +59,21 @@ void		print_chain_dict(t_chain *chain);
 void		print_node_dict(t_chain *chain);
 
 /*
-** trsl chain
+** trsl utils
 */
 void		print_chain_trsl(t_chain *chain);
+void		print_node_trsl(t_chain *chain);
+char		*get_by_symbol(t_chain *chain, char *symb);
+
 
 /*
-** t_chain
+** chain utils
 */
 t_chain		*new_node(void *data);
 void		*append_node(t_chain **chain, t_chain *node);
 size_t		chain_size(t_chain *chain);
 void		del_node(t_chain *node);
+void 		print_node(t_chain *node);
 
 /*
 ** get_next_line
@@ -87,6 +91,8 @@ char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
 int			is_any(char c, char *t);
+size_t		str_cmp(char *s1, char *s2);
+
 
 /*
 ** print utils
@@ -112,9 +118,17 @@ size_t	g_num_free;
 void	num_alloc(char *s);
 void	num_free(char *s);
 
-# define malloc(x) my_malloc(x)
-# define free(x) my_free(x)
+# ifndef WRAP
+#  define WRAP 0
+# endif
+
+# if WRAP == 1
+#  define malloc(x) my_malloc(x)
+#  define free(x) my_free(x)
+
 void	*my_malloc(size_t size);
 void	my_free(void *ptr);
+# endif
+void	print_leaks(void);
 
 #endif

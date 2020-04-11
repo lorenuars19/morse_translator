@@ -6,13 +6,24 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:45:45 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 17:57:57 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 18:44:28 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "morsec.h"
 
-
+char	*get_by_symbol(t_chain *chain, char *symb)
+{
+	t_dict	*dict;
+	while (chain)
+	{
+		dict = (t_dict *)chain->data;
+		if (str_cmp(dict->symb, symb))
+			return (dict->word);
+		chain = chain->next;
+	}
+	return (NULL);
+}
 
 void		print_chain_trsl(t_chain *chain)
 {
