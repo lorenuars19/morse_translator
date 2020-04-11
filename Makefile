@@ -6,19 +6,27 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/11 09:04:43 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/11 15:46:53 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+VOPTS	= --xtree-memory=full --xtree-leak=yes \
+--track-origins=yes --leak-check=full --show-leak-kinds=all -v
 # ================================ VARIABLES ================================= #
 
 NAME	= morsec
+OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
 ifeq ($(DEBUG),1)
-CFLAGS	+= -g3 -fsanitize=address -fsanitize=leak
+CFLAGS	+= -g3 -fsanitize=address
+CFLAGS	+= -Wunused -fdiagnostics-color=always
+CFLAGS	+= -D DEBUG=1
+endif
+ifeq ($(DEBUG),2)
+CFLAGS	+= -g3 -fsanitize=leak
 CFLAGS	+= -Wunused -fdiagnostics-color=always
 CFLAGS	+= -D DEBUG=1
 endif
@@ -60,8 +68,17 @@ $(OBJS) : $(SRCS)
 
 run : $(NAME)
 	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
-	./$(NAME) "Test"
-	./$(NAME) -r "Reverse"
+	-sudo ./$(NAME) $(OPT)
+	make fclean
+
+valgrind : re
+	@printf "$(CY)<> VALGRIND $(RC)\n"
+	sudo valgrind $(VOPTS) ./$(NAME) $(OPT)
+	make fclean
+	make vclean
+
+vclean :
+	rm -f *.kcg.*
 
 #	cleaning
 clean :

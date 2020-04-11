@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 12:08:33 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 16:11:42 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_dict	*new_dict(char *word, char *symb)
 	{
 		return (err_ptr("MALLOC DICT ERROR"));
 	}
+	num_alloc("dict");
 	new->word = word;
 	new->symb = symb;
 	return (new);
@@ -35,6 +36,7 @@ t_chain	*new_node(void *data)
 	{
 		return (err_ptr("MALLOC NODE ERROR"));
 	}
+	num_alloc("node");
 	new->data = data;
 	new->next = NULL;
 	return (new);
@@ -76,30 +78,31 @@ size_t		chain_size(t_chain *chain)
 
 void		del_dict(t_dict *dict)
 {
-	if (dict->word)
-	{
+	printf("Dict : <%p> \"%s\" | \"%s\"\n", dict, dict->word, dict->symb);
+
 		free(dict->word);
+		num_free("del_dict_word");
 		dict->word = NULL;
-	}
-	if (dict->symb)
-	{
+
+
 		free(dict->symb);
+		num_free("del_dict_symb");
 		dict->symb = NULL;
-	}
+
 }
 
 void	del_node(t_chain *node)
 {
-	if (node->data)
-	{
+	del_dict(node->data);
+
 		free(node->data);
+		num_free("del_node_data");
 		node->data = NULL;
-	}
-	if (node)
-	{
+
 		free(node);
+		num_free("del_node");
 		node = NULL;
-	}
+
 }
 
 void		clear_dict(t_chain **chain)

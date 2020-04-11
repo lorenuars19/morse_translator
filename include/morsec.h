@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 12:01:16 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 15:57:17 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,15 @@ void		str_del(char **tofree);
 */
 char		*translator(t_chain *dict);
 t_chain		*get_dict(char *filename);
+
+/*
+** Alloc ? Free
+*/
+size_t	g_num_alloc;
+size_t	g_num_free;
+void	num_alloc(char *s);
+void	num_free(char *s);
+
+
 
 #endif

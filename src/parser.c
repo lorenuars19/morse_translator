@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:58 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 12:05:48 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 16:10:49 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ int		check_line(char *s)
 t_chain	*get_dict(char *filename)
 {
 	t_chain	*dict;
-	t_chain *curr;
-	t_dict	*temp;
+	t_chain	*temp;
 	char	*line;
 	int		fd;
 
+	dict = NULL;
+	temp = NULL;
+	line = NULL;
 	if ((fd = open(filename, O_RDONLY)) == -1)
 	{
 		return (err_ptr("INVALID DICT FILE"));
@@ -57,18 +59,19 @@ t_chain	*get_dict(char *filename)
 	{
 		if (!check_line(line))
 		{
+			str_del(&line);
 			return (err_ptr("DICT LINE INVALID"));
 		}
-		temp = new_dict(str_dupto(line, BLANK), str_revdupto(line, BLANK));
-		curr = new_node(temp);
-		if ((append_node(&dict, (void *)curr)) == NULL)
+		temp = new_node(new_dict(str_dupto(line, BLANK), \
+		str_revdupto(line, BLANK)));
+		if ((append_node(&dict, (void *)temp)) == NULL)
 		{
-			del_dict(temp);
+			del_node(temp);
 			str_del(&line);
+			clear_dict(&dict);
 			return (err_ptr("DICT APPEND ERROR"));
 		}
 		str_del(&line);
-		del_dict(temp);
 	}
 	str_del(&line);
 	return (dict);
