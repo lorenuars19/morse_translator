@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 19:11:42 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 23:18:20 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ size_t	str_lento(char *s, char *t)
 
 	lento = 0;
 	while (s && s[lento] && !is_any(s[lento], t))
-	lento++;
+	{
+		lento++;
+	}
+	if (s && is_any(s[lento], t))
+	{
+		return (lento);
+	}
 	return (lento);
 }
 
@@ -44,6 +50,26 @@ size_t	str_revlento(char *s, char *t)
 	return (lento);
 }
 
+char	*str_dup(char *s)
+{
+	char	*new;
+	size_t	lento;
+	size_t	i;
+
+	i = 0;
+	lento = str_len(s);
+	if (!(new = malloc(lento + 1 * sizeof(char))))
+	{
+		return (NULL);
+	}
+	while (s && *s && i < lento)
+	{
+		new[i++] = *s++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
 char	*str_dupto(char *s, char *t)
 {
 	char	*new;
@@ -57,7 +83,9 @@ char	*str_dupto(char *s, char *t)
 		return (NULL);
 	}
 	while (s && *s && i < lento)
-	new[i++] = *s++;
+	{
+		new[i++] = *s++;
+	}
 	new[i] = '\0';
 	return (new);
 }
@@ -75,13 +103,24 @@ char	*str_revdupto(char *s, char *t)
 		return (NULL);
 	}
 	while (s && *s && !is_any(*s, t))
-	s++;
+	{
+		s++;
+	}
 	while (s && *s && is_any(*s, t))
-	s++;
+	{
+		s++;
+	}
 	while (s && *s && i < lento && !is_any(*s, t))
-	new[i++] = *s++;
+	{
+		new[i++] = *s++;
+	}
 	new[i] = '\0';
 	return (new);
+}
+
+int		is_space(char c)
+{
+	return (((c == ' ' || (c >= '\t' && c <= '\r')) ? 1 : 0));
 }
 
 int		is_lower(char c)
@@ -128,6 +167,18 @@ char	toggle_case(char c)
 		return (to_lower(c));
 	}
 	return (0);
+}
+
+char	*str_low(char *s)
+{
+	printf("str_low IN : '%s'\n", s);
+	while (s && *s)
+	{
+		*s = to_lower(*s);
+		s++;
+	}
+	printf("str_low OUT : '%s'\n", s);
+	return (s);
 }
 
 int		is_only(char c, char *t)
@@ -196,17 +247,13 @@ void	str_del(char **tofree)
 size_t	str_cmp(char *s1, char *s2)
 {
 	size_t 	i;
-	size_t 	slen1;
-	size_t	slen2;
-	size_t 	size;
 
-	slen1 = str_len(s1);
-	slen2 = str_len(s2);
-	size = ((slen2 > slen1) ? slen1 : slen2);
 	i = 0;
-	while (s1 && s2 && s1[i] && s2[i] && s1[i] == s2[i] && i <= size)
+	while (s1 && s2 && s1[i] && s2[i] && s1[i] == s2[i])
+	{
+		//printf("CMP <%lu> '%c' ?=? '%c'\n",i, s1[i], s2[i]);
 		i++;
-	if (i == size)
-		return (0);
+	}
+	//printf("CMP-RET : <%lu> '%c' ?=? '%c'\n",i, s1[i], s2[i]);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

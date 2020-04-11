@@ -6,7 +6,7 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/11 19:22:09 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/11 22:39:00 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ VOPTS	= --xtree-memory=full --xtree-leak=yes \
 # ================================ VARIABLES ================================= #
 
 NAME	= morsec
-OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
+#OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
+OPT		= "- . ... - / - . ... -"
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
@@ -25,10 +26,11 @@ CFLAGS	+= -g3 -fsanitize=address
 CFLAGS	+= -Wunused -fdiagnostics-color=always
 CFLAGS	+= -D DEBUG=1 -D WRAP=1
 endif
+
 ifeq ($(DEBUG),2)
-CFLAGS	+= -g3 -fsanitize=leak
+CFLAGS	+= -g3
 CFLAGS	+= -Wunused -fdiagnostics-color=always
-CFLAGS	+= -D DEBUG=1
+CFLAGS	+= -D DEBUG=1 -D WRAP=1
 endif
 
 SRCDIR	= src/

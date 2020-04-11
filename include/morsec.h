@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 19:22:48 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 23:25:01 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define BLANK "\t\v\f\r "
 # define MORSE_DICT ".-"
 # define MORSE "\t\v\f\r /.-"
+# define MORSE_SEP "/"
 
 # include <stdio.h>
 # include <string.h>
@@ -63,6 +64,7 @@ void		print_node_dict(t_chain *chain);
 */
 void		print_chain_trsl(t_chain *chain);
 void		print_node_trsl(t_chain *chain);
+void		clear_trsl(t_chain **chain);
 char		*get_by_symbol(t_chain *chain, char *symb);
 
 
@@ -87,11 +89,23 @@ char		*jointo(char *s1, char *s2, char **tofree);
 */
 size_t		str_lento(char *s, char *t);
 size_t		str_revlento(char *s, char *t);
+char	*str_dup(char *s);
 char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
 int			is_any(char c, char *t);
 size_t		str_cmp(char *s1, char *s2);
+char		*str_low(char *s);
+
+int			is_space(char c);
+int			is_lower(char c);
+int			is_upper(char c);
+char		to_lower(char c);
+char		to_upper(char c);
+int			is_letter(char c);
+char		toggle_case(char c);
+
+
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:45:45 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 18:44:28 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/11 23:26:46 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,39 @@
 char	*get_by_symbol(t_chain *chain, char *symb)
 {
 	t_dict	*dict;
+	int 	cmp;
+
+	if (!str_cmp(symb, MORSE_SEP))
+	{
+		return (str_dupto(" ", NULL));
+	}
 	while (chain)
 	{
 		dict = (t_dict *)chain->data;
-		if (str_cmp(dict->symb, symb))
+		cmp = str_cmp(dict->symb, symb);
+		printf("->symb '%s' | symb '%s' | ->word %s | cmp %d\n", \
+		dict->symb, symb, dict->word, cmp);
+		if (!cmp)
+		{
+			printf("RET ->symb '%s' | symb '%s' | ->word %s *%p | cmp %d\n", \
+			dict->symb, symb, dict->word, dict->word, cmp);
 			return (dict->word);
+		}
 		chain = chain->next;
 	}
 	return (NULL);
+}
+
+void		clear_trsl(t_chain **chain)
+{
+	t_chain *tmp;
+
+	while (chain && *chain)
+	{
+		tmp = (*chain)->next;
+		del_node(*chain);
+		*chain = tmp;
+	}
 }
 
 void		print_chain_trsl(t_chain *chain)
