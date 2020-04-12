@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 15:18:59 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:25:43 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*translator(t_chain *dict, char *input)
 			input++;
 		}
 	 	temp = str_dupto(input, BLANK);
-		append_node(&trsl, new_node(get_by_symbol(dict, temp)));
+		append_node(&trsl, new_node(str_low(get_by_symbol(dict, temp))));
 		str_del(&temp);
 		while (*input && !is_space(*input))
 		{

@@ -6,7 +6,7 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/12 14:20:00 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/12 16:21:10 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ VOPTS	= --xtree-memory=full --xtree-leak=yes \
 NAME	= morsec
 #OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
 #OPT		= "- . ... - / - . ... -"
-OPT		= -r "my name is jeff"
+#OPT		= -r "my name is jeff"
+OPT		= "...-.-"
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
@@ -72,7 +73,7 @@ $(OBJS) : $(SRCS)
 run : $(NAME)
 	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
 	-sudo ./$(NAME) $(OPT)
-	make fclean
+	@make fclean
 
 valgrind : re
 	@printf "$(CY)<> VALGRIND $(RC)\n"
@@ -85,8 +86,8 @@ vclean :
 
 #	cleaning
 clean :
-	@printf "$(RE)--- Removing $(OBJ)$(RC)\n"
-	@rm -f $(OBJS)
+	@printf "$(RE)--- Removing $(OBJ) $(OBJDIR)$(RC)\n"
+	@rm -rf $(OBJS) $(OBJDIR)
 
 fclean : clean
 	@printf "$(RE)--- Removing $(NAME)$(RC)\n"

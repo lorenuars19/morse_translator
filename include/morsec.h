@@ -6,12 +6,12 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 15:09:43 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:24:15 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MORSLATOR_H
-# define MORSLATOR_H
+#ifndef	MORSEC_H
+# define MORSEC_H
 
 # define BR printf("%d in %s\n",__LINE__, __FUNCTION__);getchar();
 # define D printf("%d in %s\n",__LINE__, __FUNCTION__);
@@ -36,19 +36,19 @@
 # include <stddef.h>
 # include <stdlib.h>
 
-struct s_dict
+struct	s_dict
 {
 	char				*word;
 	char				*symb;
 };
-typedef struct s_dict 	t_dict;
+typedef struct	s_dict	t_dict;
 
-struct s_chain
+struct	s_chain
 {
 	void				*data;
 	struct s_chain 		*next;
 };
-typedef struct s_chain 	t_chain;
+typedef struct	s_chain	t_chain;
 
 /*
 ** dict utils
