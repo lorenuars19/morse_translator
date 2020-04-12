@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:47:11 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 18:43:24 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,29 @@ int		morsec(int direction, char *input)
 
 	dict = NULL;
 	resl = NULL;
-	if (!(dict = get_dict("dictionary.txt")))
+	if (!(dict = get_dict("dict_wikipedia.txt")))
 	{
 		clear_dict(&dict);
-		return (err("DICT ERROR"));
-	}
-	if (DEBUG)
-	{
-		//print_chain_dict(dict);
+		return (err("Error : Dictionnary error"));
 	}
 	if (direction == 1)
 	{
 		if ((resl = rev_translator(dict, input)) == NULL)
 		{
 			clear_dict(&dict);
-			return (err("REV TRANSLATOR ERROR"));
+			str_del(&resl);
+			return (err("ASCII to MORSE"));
 		}
 		puts(resl);
 		str_del(&resl);
 	}
-
 	if (direction == 0)
 	{
 		if ((resl = translator(dict, input)) == NULL)
 		{
 			clear_dict(&dict);
-			return (err("TRANSLATOR ERROR"));
+			str_del(&resl);
+			return (err("MORSE to ASCII"));
 		}
 		puts(resl);
 		str_del(&resl);
@@ -55,29 +52,24 @@ int		morsec(int direction, char *input)
 
 int		main(int argc, char *argv[])
 {
-	g_num_alloc = 1;
-	g_num_free = 1;
-
 	if (argc == 2)
 	{
 		if (morsec(0, argv[1]))
 		{
-			print_leaks();
-			return (1);
+			return (err("Morsec normal"));
 		}
 	}
 	else if (argc == 3 && strncmp(argv[1], "-r", 3) == 0)
 	{
 		if (morsec(1, argv[2]))
 		{
-			return (1);
+			return (err("Morsec reverse"));
 		}
 	}
 	else
 	{
-		err("ARGS ERROR");
-		return (1);
+		return (err("Inccorrect number of arguments given"\
+		"Usage : ./morsec \"MORSE to ASCII\" | -r \"ASCII to MORSE\"\n"));
 	}
-	print_leaks();
 	return (0);
 }

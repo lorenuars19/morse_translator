@@ -6,34 +6,20 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/12 16:21:10 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/12 19:29:51 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-VOPTS	= --xtree-memory=full --xtree-leak=yes \
---track-origins=yes --leak-check=full --show-leak-kinds=all -v
+# VOPTS	= --xtree-memory=full --xtree-leak=yes \
+# --track-origins=yes --leak-check=full --show-leak-kinds=all -v
 # ================================ VARIABLES ================================= #
 
 NAME	= morsec
-#OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
-#OPT		= "- . ... - / - . ... -"
-#OPT		= -r "my name is jeff"
-OPT		= "...-.-"
+OPT		= -r "morsec"
+OPT1	= "-- --- .-. ... . -.-."
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
-
-ifeq ($(DEBUG),1)
-CFLAGS	+= -g3 -fsanitize=address
-CFLAGS	+= -Wunused -fdiagnostics-color=always
-CFLAGS	+= -D DEBUG=1 -D WRAP=1
-endif
-
-ifeq ($(DEBUG),2)
-CFLAGS	+= -g3
-CFLAGS	+= -Wunused -fdiagnostics-color=always
-CFLAGS	+= -D DEBUG=1 -D WRAP=1
-endif
 
 SRCDIR	= src/
 INCDIR	= include/
@@ -72,17 +58,18 @@ $(OBJS) : $(SRCS)
 
 run : $(NAME)
 	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
-	-sudo ./$(NAME) $(OPT)
-	@make fclean
+	./$(NAME) $(OPT)
+	./$(NAME) $(OPT1)
 
-valgrind : re
-	@printf "$(CY)<> VALGRIND $(RC)\n"
-	sudo valgrind $(VOPTS) ./$(NAME) $(OPT)
-	make fclean
-	make vclean
+# valgrind : re
+# 	@printf "$(CY)<> VALGRIND $(RC)\n"
+# 	-sudo valgrind $(VOPTS) ./$(NAME) $(OPT)
+# 	make fclean
+# 	make vclean
+#
+# vclean :
+# 	rm -f *.kcg.*
 
-vclean :
-	rm -f *.kcg.*
 
 #	cleaning
 clean :

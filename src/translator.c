@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 15:25:43 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 19:29:16 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*to_str(t_chain *trsl)
 	}
 	if (!(new = malloc(len + 1 * sizeof(char))))
 	{
-		return (err_ptr("TO_STR MALLOC ERROR"));
+		return (err_ptr("to_str : malloc fail"));
 	}
 	tmp = trsl;
 	i = 0;
@@ -70,7 +70,7 @@ char	*translator(t_chain *dict, char *input)
 	temp = NULL;
 	if (!check_input(input, MORSE))
 	{
-		return (err_ptr("INVALID INPUT"));
+		return (err_ptr("MORSE input is invalid"));
 	}
 	while (input && *input)
 	{
@@ -86,10 +86,6 @@ char	*translator(t_chain *dict, char *input)
 			input++;
 		}
 	}
-	if (DEBUG)
-	{
-		print_chain_trsl(trsl);
-	}
 	return (to_str(trsl));
 }
 
@@ -104,9 +100,18 @@ char	*rev_translator(t_chain *dict, char *input)
 	while (input && *input)
 	{
 	 	temp = str_upp(str_ndup(input, 1));
+		if (!str_cmp(temp, "<"))
+		{
+			str_del(&temp);
+			temp = str_dupto(input, BLANK);
+			printf("temp %s\n",temp);
+			input += str_len(temp) - 1;
+		}
 		if ((word = get_by_word(dict, temp)) == NULL)
 		{
-			return (err_ptr("NOT IN DICTIONNARY"));
+			str_del(&temp);
+			str_del(&word);
+			return (err_ptr("Can't find pattern in dictionnary"));
 		}
 		append_node(&trsl, new_node(word));
 		str_del(&temp);
@@ -115,10 +120,6 @@ char	*rev_translator(t_chain *dict, char *input)
 		{
 			append_node(&trsl, new_node(str_dup(" ")));
 		}
-	}
-	if (DEBUG)
-	{
-		print_chain_trsl(trsl);
 	}
 	return (to_str(trsl));
 }

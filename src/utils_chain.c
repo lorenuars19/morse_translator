@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:50:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:08:55 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 19:22:53 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_chain	*new_node(void *data)
 	new = NULL;
 	if (!(new = (t_chain*)malloc(sizeof(t_chain))))
 	{
-		return (err_ptr("MALLOC NODE ERROR"));
+		return (err_ptr("new_node : malloc fail"));
 	}
 	new->data = data;
 	new->next = NULL;
@@ -33,7 +33,7 @@ void		*append_node(t_chain **chain, t_chain *node)
 	tmp = NULL;
 	if (!node)
 	{
-		return (err_ptr("APPEND NULL NODE"));
+		return (err_ptr("append_node : NULL node"));
 	}
 	if (*chain)
 	{
@@ -66,7 +66,6 @@ size_t		chain_size(t_chain *chain)
 
 void	del_node(t_chain *node)
 {
-	//print_node(node);
 	if (node->data)
 	{
 		free(node->data);
