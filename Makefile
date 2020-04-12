@@ -70,10 +70,11 @@ run : $(NAME)
 # vclean :
 # 	rm -f *.kcg.*
 
+
 #	cleaning
 clean :
-	@printf "$(RE)--- Removing $(OBJ)$(RC)\n"
-	@rm -f $(OBJS)
+	@printf "$(RE)--- Removing $(OBJ) $(OBJDIR)$(RC)\n"
+	@rm -rf $(OBJS) $(OBJDIR)
 
 fclean : clean
 	@printf "$(RE)--- Removing $(NAME)$(RC)\n"

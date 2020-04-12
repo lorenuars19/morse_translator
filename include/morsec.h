@@ -34,14 +34,14 @@ struct s_dict
 	char				*word;
 	char				*symb;
 };
-typedef struct s_dict 	t_dict;
+typedef struct s_dict	t_dict;
 
 struct s_chain
 {
 	void				*data;
 	struct s_chain 		*next;
 };
-typedef struct s_chain 	t_chain;
+typedef struct	s_chain	t_chain;
 
 /*
 ** dict utils
