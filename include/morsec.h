@@ -6,19 +6,12 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 15:09:43 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:31:52 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	MORSLATOR_H
 # define MORSLATOR_H
-
-# define BR printf("%d in %s\n",__LINE__, __FUNCTION__);getchar();
-# define D printf("%d in %s\n",__LINE__, __FUNCTION__);
-
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64
@@ -124,27 +117,5 @@ void		str_del(char **tofree);
 */
 char		*translator(t_chain *dict, char *input);
 t_chain		*get_dict(char *filename);
-
-/*
-** Alloc ? Free
-*/
-size_t	g_num_alloc;
-size_t	g_num_free;
-
-void	num_alloc(char *s);
-void	num_free(char *s);
-
-# ifndef WRAP
-#  define WRAP 0
-# endif
-
-# if WRAP == 1
-#  define malloc(x) my_malloc(x)
-#  define free(x) my_free(x)
-
-void	*my_malloc(size_t size);
-void	my_free(void *ptr);
-# endif
-void	print_leaks(void);
 
 #endif

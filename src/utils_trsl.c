@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:45:45 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 15:03:28 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 16:49:09 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_by_word(t_chain *chain, char *word)
 			}
 		}
 	}
-	return (str_dup(""));
+	return (NULL);
 }
 
 void		clear_trsl(t_chain **chain)

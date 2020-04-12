@@ -6,7 +6,7 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/12 14:20:00 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/12 17:08:11 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,12 @@ VOPTS	= --xtree-memory=full --xtree-leak=yes \
 # ================================ VARIABLES ================================= #
 
 NAME	= morsec
-#OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
-#OPT		= "- . ... - / - . ... -"
-OPT		= -r "my name is jeff"
+OPT		= -r "1234567890 >"
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
 ifeq ($(DEBUG),1)
-CFLAGS	+= -g3 -fsanitize=address
-CFLAGS	+= -Wunused -fdiagnostics-color=always
-CFLAGS	+= -D DEBUG=1 -D WRAP=1
-endif
-
-ifeq ($(DEBUG),2)
 CFLAGS	+= -g3
 CFLAGS	+= -Wunused -fdiagnostics-color=always
 CFLAGS	+= -D DEBUG=1 -D WRAP=1
@@ -71,12 +63,13 @@ $(OBJS) : $(SRCS)
 
 run : $(NAME)
 	@printf "$(CY)>>> Running $(NAME)$(RC)\n"
-	-sudo ./$(NAME) $(OPT)
-	make fclean
+	sudo ./$(NAME) $(OPT)
+	make clean
 
 valgrind : re
 	@printf "$(CY)<> VALGRIND $(RC)\n"
 	sudo valgrind $(VOPTS) ./$(NAME) $(OPT)
+
 	make fclean
 	make vclean
 
