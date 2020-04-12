@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:45:45 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 23:26:46 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:16:01 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 char	*get_by_symbol(t_chain *chain, char *symb)
 {
-	t_dict	*dict;
-	int 	cmp;
+	t_dict	*tmp;
 
-	if (!str_cmp(symb, MORSE_SEP))
+	tmp = NULL;
+	if (!str_cmp(symb, BLANK))
 	{
-		return (str_dupto(" ", NULL));
+		return (NULL);
 	}
-	while (chain)
+	else if (!str_cmp(symb, MORSE_SEP))
 	{
-		dict = (t_dict *)chain->data;
-		cmp = str_cmp(dict->symb, symb);
-		printf("->symb '%s' | symb '%s' | ->word %s | cmp %d\n", \
-		dict->symb, symb, dict->word, cmp);
-		if (!cmp)
+		return (strdup(" "));
+	}
+	else
+	{
+		while (chain)
 		{
-			printf("RET ->symb '%s' | symb '%s' | ->word %s *%p | cmp %d\n", \
-			dict->symb, symb, dict->word, dict->word, cmp);
-			return (dict->word);
+			tmp = (t_dict *)chain->data;
+			if (str_cmp(symb, tmp->symb))
+			{
+				chain = chain->next;
+			}
+			else if (!str_cmp(symb, tmp->symb))
+			{
+				return (str_dup(tmp->word));
+			}
 		}
-		chain = chain->next;
 	}
 	return (NULL);
 }
@@ -62,11 +67,11 @@ void		print_chain_trsl(t_chain *chain)
 		puts("NULL CHAIN");
 		return ;
 	}
-	puts("\nChain :");
+	puts("\nChain TRSL:");
 	while (tmp)
 	{
-		printf("<%lu> \t [node * %p | trsl \"%s\" next *> %p]\n", \
-		i, tmp, (char *)tmp->data, tmp->next);
+		printf("<%lu> \t [node * %p | trsl \"%s\" *%p |next *> %p]\n", \
+		i, tmp, (char *)tmp->data, tmp->data, tmp->next);
 		i++;
 		tmp = tmp->next;
 	}
@@ -83,7 +88,7 @@ void		print_node_trsl(t_chain *chain)
 		puts("NULL NODE");
 		return ;
 	}
-	puts("\nNode :");
-		printf("[node * %p | trsl  \"%s\" next *> %p]\n", \
-		tmp, (char *)tmp->data, tmp->next);
+	puts("\nNode TRSL :");
+	printf("[node * %p | trsl  \"%s\" next *> %p]\n", \
+	tmp, (char *)tmp->data, tmp->next);
 }

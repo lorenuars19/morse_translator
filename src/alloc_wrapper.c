@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 16:45:43 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 19:24:50 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:18:01 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_leaks(void)
 {
 	if (WRAP)
 	{
-		if (g_num_free != g_num_alloc)
+		if (g_num_free < g_num_alloc)
 		{
 			printf("\n\033[31;1m/!\\ Leak /!\\ %lu Alloc / %lu Free\033[0m\n\n", g_num_alloc, g_num_free);
 		}

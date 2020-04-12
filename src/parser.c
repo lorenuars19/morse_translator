@@ -6,27 +6,29 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:58 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 16:49:03 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 11:44:09 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "morsec.h"
 
+#define Z printf("<%d> input '%s' > '%c'\n",__LINE__, s, *s);
+
 int		check_line(char *s)
 {
-	while (s && *s && !is_any(*s, BLANK))
+	while (s && *s && !is_only(*s, BLANK))
 	{
 		s++;
 	}
-	if (s && *s && !is_any(*s, BLANK))
+	if (s && *s && !is_only(*s, BLANK))
 	{
 		return (0);
 	}
-	while (s && *s && is_any(*s, BLANK))
+	while (s && *s && is_only(*s, BLANK))
 	{
 		s++;
 	}
-	if (s && *s && is_only(*s, MORSE_DICT))
+	if (s && *s && !is_only(*s, MORSE_DICT))
 	{
 		return (0);
 	}
@@ -34,7 +36,7 @@ int		check_line(char *s)
 	{
 		s++;
 	}
-	if (s && *s && !is_any(*s, MORSE_DICT))
+	if (s && *s && !is_only(*s, MORSE_DICT))
 	{
 		return (0);
 	}

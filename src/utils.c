@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 23:18:20 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 11:35:39 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ size_t	str_lento(char *s, char *t)
 	size_t	lento;
 
 	lento = 0;
-	while (s && s[lento] && !is_any(s[lento], t))
+	while (s && s[lento] && !is_only(s[lento], t))
 	{
 		lento++;
 	}
-	if (s && is_any(s[lento], t))
+	if (s && is_only(s[lento], t))
 	{
 		return (lento);
 	}
@@ -43,10 +43,12 @@ size_t	str_revlento(char *s, char *t)
 	size_t	lento;
 	size_t	slen;
 
-	slen = str_lento(s, '\0');
+	slen = str_len(s);
 	lento = slen;
 	while (s && s[lento] && is_only(s[lento], t))
-	lento--;
+	{
+		lento--;
+	}
 	return (lento);
 }
 
@@ -102,15 +104,15 @@ char	*str_revdupto(char *s, char *t)
 	{
 		return (NULL);
 	}
-	while (s && *s && !is_any(*s, t))
+	while (s && *s && !is_only(*s, t))
 	{
 		s++;
 	}
-	while (s && *s && is_any(*s, t))
+	while (s && *s && is_only(*s, t))
 	{
 		s++;
 	}
-	while (s && *s && i < lento && !is_any(*s, t))
+	while (s && *s && i < lento && !is_only(*s, t))
 	{
 		new[i++] = *s++;
 	}
@@ -182,19 +184,6 @@ char	*str_low(char *s)
 }
 
 int		is_only(char c, char *t)
-{
-	while (t && *t)
-	{
-		if (*t != c)
-		{
-			return (0);
-		}
-		t++;
-	}
-	return (1);
-}
-
-int		is_any(char c, char *t)
 {
 	while (t && *t)
 	{

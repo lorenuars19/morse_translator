@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 22:16:04 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:05:21 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		morsec(int direction, char *input)
 	}
 	if (DEBUG)
 	{
-		//print_chain_dict(dict);
+		print_chain_dict(dict);
 	}
 	if (direction == 1)
 	{
@@ -75,6 +75,6 @@ int		main(int argc, char *argv[])
 		err("ARGS ERROR");
 		return (1);
 	}
-	printf("SUMMARY : %lu A / %lu F\n\n", g_num_alloc, g_num_free);
+	print_leaks();
 	return (0);
 }

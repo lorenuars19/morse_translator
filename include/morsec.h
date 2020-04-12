@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/11 23:25:01 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:20:12 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		print_chain_trsl(t_chain *chain);
 void		print_node_trsl(t_chain *chain);
 void		clear_trsl(t_chain **chain);
 char		*get_by_symbol(t_chain *chain, char *symb);
+int			check_input(char *s);
 
 
 /*
@@ -89,11 +90,10 @@ char		*jointo(char *s1, char *s2, char **tofree);
 */
 size_t		str_lento(char *s, char *t);
 size_t		str_revlento(char *s, char *t);
-char	*str_dup(char *s);
+char		*str_dup(char *s);
 char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
-int			is_any(char c, char *t);
 size_t		str_cmp(char *s1, char *s2);
 char		*str_low(char *s);
 
@@ -104,9 +104,6 @@ char		to_lower(char c);
 char		to_upper(char c);
 int			is_letter(char c);
 char		toggle_case(char c);
-
-
-
 
 /*
 ** print utils
