@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 16:24:08 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 11:35:39 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:02:30 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,26 @@ size_t	str_revlento(char *s, char *t)
 		lento--;
 	}
 	return (lento);
+}
+
+char	*str_ndup(char *s, size_t n)
+{
+	char	*new;
+	size_t	lento;
+	size_t	i;
+
+	i = 0;
+	lento = str_len(s);
+	if (!(new = malloc(lento + 1 * sizeof(char))))
+	{
+		return (NULL);
+	}
+	while (s && *s && i < lento && i < n)
+	{
+		new[i++] = *s++;
+	}
+	new[i] = '\0';
+	return (new);
 }
 
 char	*str_dup(char *s)
@@ -120,29 +140,29 @@ char	*str_revdupto(char *s, char *t)
 	return (new);
 }
 
-int		is_space(char c)
+inline int	is_space(char c)
 {
 	return (((c == ' ' || (c >= '\t' && c <= '\r')) ? 1 : 0));
 }
 
-int		is_lower(char c)
+inline int	is_lower(char c)
 {
 	return (((c >= 'a' && c <= 'z') ? 1 : 0));
 }
 
-int		is_upper(char c)
+inline int	is_upper(char c)
 {
 	return (((c >= 'A' && c <= 'Z') ? 1 : 0));
 }
 
-char	to_lower(char c)
+inline char	to_lower(char c)
 {
-	return(((is_lower(c)) ? c : c - ('a' - 'A')));
+	return((is_upper(c)) ? c + ('a' - 'A') : c);
 }
 
-char	to_upper(char c)
+inline char	to_upper(char c)
 {
-	return(((is_upper(c)) ? c : c + ('a' - 'A')));
+	return((is_lower(c)) ? c - ('a' - 'A') : c);
 }
 
 int		is_letter(char c)
@@ -173,13 +193,27 @@ char	toggle_case(char c)
 
 char	*str_low(char *s)
 {
-	printf("str_low IN : '%s'\n", s);
-	while (s && *s)
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
 	{
-		*s = to_lower(*s);
-		s++;
+		s[i] = to_lower(s[i]);
+		i++;
 	}
-	printf("str_low OUT : '%s'\n", s);
+	return (s);
+}
+
+char	*str_upp(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+	{
+		s[i] = to_upper(s[i]);
+		i++;
+	}
 	return (s);
 }
 

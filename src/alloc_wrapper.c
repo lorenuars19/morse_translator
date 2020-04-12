@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 16:45:43 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:18:01 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:12:25 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*my_malloc(size_t size)
 void	my_free(void *ptr)
 {
 	g_num_free++;
+	//printf("Free <%p>\n", ptr);
 	free(ptr);
 	ptr = NULL;
 }

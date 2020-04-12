@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:05:21 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:47:11 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ int		morsec(int direction, char *input)
 	}
 	if (DEBUG)
 	{
-		print_chain_dict(dict);
+		//print_chain_dict(dict);
 	}
 	if (direction == 1)
 	{
-		// if ((resl = rev_translator(dict)) == NULL)
-		// {
-		// 	return (err("TRANSLATOR ERROR"));
-		// }
+		if ((resl = rev_translator(dict, input)) == NULL)
+		{
+			clear_dict(&dict);
+			return (err("REV TRANSLATOR ERROR"));
+		}
+		puts(resl);
+		str_del(&resl);
 	}
 
 	if (direction == 0)
@@ -44,7 +47,7 @@ int		morsec(int direction, char *input)
 			return (err("TRANSLATOR ERROR"));
 		}
 		puts(resl);
-		puts(input);
+		str_del(&resl);
 	}
 	clear_dict(&dict);
 	return (0);

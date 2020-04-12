@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:45:45 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:16:01 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:03:28 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,33 @@ char	*get_by_symbol(t_chain *chain, char *symb)
 		}
 	}
 	return (NULL);
+}
+
+char	*get_by_word(t_chain *chain, char *word)
+{
+	t_dict	*tmp;
+
+	tmp = NULL;
+	if (check_input(word,BLANK))
+	{
+		return (str_dup(MORSE_SEP));
+	}
+	else
+	{
+		while (chain)
+		{
+			tmp = (t_dict *)chain->data;
+			if (str_cmp(word, tmp->word))
+			{
+				chain = chain->next;
+			}
+			else if (!str_cmp(word, tmp->word))
+			{
+				return (str_dup(tmp->symb));
+			}
+		}
+	}
+	return (str_dup(""));
 }
 
 void		clear_trsl(t_chain **chain)

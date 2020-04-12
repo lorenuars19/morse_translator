@@ -6,17 +6,53 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:19:20 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:18:59 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "morsec.h"
 
-int		check_input(char *s)
+char	*to_str(t_chain *trsl)
+{
+	char	*new;
+	char	*iter;
+	t_chain	*tmp;
+	size_t 	len;
+	size_t	i;
+
+	new = NULL;
+	len = 0;
+	tmp = trsl;
+	while (tmp)
+	{
+		len += str_len((char *)tmp->data);
+		tmp = tmp->next;
+	}
+	if (!(new = malloc(len + 1 * sizeof(char))))
+	{
+		return (err_ptr("TO_STR MALLOC ERROR"));
+	}
+	tmp = trsl;
+	i = 0;
+	while (tmp)
+	{
+		iter = (char *)tmp->data;
+		while (iter && *iter && i < len)
+		{
+			new[i++] = *iter++;
+		}
+		tmp = tmp->next;
+	}
+	new[i] = '\0';
+	clear_trsl(&trsl);
+	return (new);
+}
+
+int		check_input(char *s, char *t)
 {
 	while (s && *s)
 	{
-		if (!is_only(*s, MORSE))
+		if (!is_only(*s, t))
 		{
 			return (0);
 		}
@@ -32,8 +68,7 @@ char	*translator(t_chain *dict, char *input)
 
 	trsl = NULL;
 	temp = NULL;
-	(void)dict;
-	if (!check_input(input))
+	if (!check_input(input, MORSE))
 	{
 		return (err_ptr("INVALID INPUT"));
 	}
@@ -50,13 +85,40 @@ char	*translator(t_chain *dict, char *input)
 		{
 			input++;
 		}
-
 	}
-	(void)dict;
-	print_chain_trsl(trsl);
+	if (DEBUG)
+	{
+		print_chain_trsl(trsl);
+	}
+	return (to_str(trsl));
+}
 
+char	*rev_translator(t_chain *dict, char *input)
+{
+	t_chain	*trsl;
+	char 	*temp;
+	char	*word;
 
-
-	clear_trsl(&trsl);
-	return ("Hello");
+	trsl = NULL;
+	temp = NULL;
+	while (input && *input)
+	{
+	 	temp = str_upp(str_ndup(input, 1));
+		if ((word = get_by_word(dict, temp)) == NULL)
+		{
+			return (err_ptr("NOT IN DICTIONNARY"));
+		}
+		append_node(&trsl, new_node(word));
+		str_del(&temp);
+		input++;
+		if (*input)
+		{
+			append_node(&trsl, new_node(str_dup(" ")));
+		}
+	}
+	if (DEBUG)
+	{
+		print_chain_trsl(trsl);
+	}
+	return (to_str(trsl));
 }

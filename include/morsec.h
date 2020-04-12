@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:20:12 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 15:09:43 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void		print_chain_trsl(t_chain *chain);
 void		print_node_trsl(t_chain *chain);
 void		clear_trsl(t_chain **chain);
 char		*get_by_symbol(t_chain *chain, char *symb);
-int			check_input(char *s);
-
+char		*get_by_word(t_chain *chain, char *word);
+char		*to_str(t_chain *trsl);
+int			check_input(char *s, char *t);
+char		*translator(t_chain *dict, char *input);
+char		*rev_translator(t_chain *dict, char *input);
 
 /*
 ** chain utils
@@ -88,15 +91,17 @@ char		*jointo(char *s1, char *s2, char **tofree);
 /*
 ** string utils
 */
+size_t		str_len(char *s);
 size_t		str_lento(char *s, char *t);
 size_t		str_revlento(char *s, char *t);
+char		*str_ndup(char *s, size_t n);
 char		*str_dup(char *s);
 char		*str_dupto(char *s, char *t);
 char		*str_revdupto(char *s, char *t);
 int			is_only(char c, char *t);
 size_t		str_cmp(char *s1, char *s2);
 char		*str_low(char *s);
-
+char		*str_upp(char *s);
 int			is_space(char c);
 int			is_lower(char c);
 int			is_upper(char c);

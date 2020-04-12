@@ -6,7 +6,7 @@
 #    By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/10 13:37:24 by lorenuar          #+#    #+#              #
-#    Updated: 2020/04/12 11:31:03 by lorenuar         ###   ########.fr        #
+#    Updated: 2020/04/12 14:20:00 by lorenuar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ VOPTS	= --xtree-memory=full --xtree-leak=yes \
 
 NAME	= morsec
 #OPT		= "-- -.-- / -. .- -- . / .. ... / .--- . ..-. ..-."
-OPT		= "- . ... - / - . ... -"
-#OPT		= ". proute- "
+#OPT		= "- . ... - / - . ... -"
+OPT		= -r "my name is jeff"
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
