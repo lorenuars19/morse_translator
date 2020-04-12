@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:16:28 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 17:02:20 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 18:43:24 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int		main(int argc, char *argv[])
 	{
 		if (morsec(0, argv[1]))
 		{
-			return (1);
+			return (err("Morsec normal"));
 		}
 	}
 	else if (argc == 3 && strncmp(argv[1], "-r", 3) == 0)
 	{
 		if (morsec(1, argv[2]))
 		{
-			return (1);
+			return (err("Morsec reverse"));
 		}
 	}
 	else

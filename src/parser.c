@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:58 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 16:42:26 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 19:21:03 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ t_chain	*get_dict(char *filename)
 	line = NULL;
 	if ((fd = open(filename, O_RDONLY)) == -1)
 	{
-		return (err_ptr("Error : Dictionnary file invalid"));
+		return (err_ptr("Dictionnary file invalid"));
 	}
 	while (get_next_line(fd, &line))
 	{
 		if (!check_line(line))
 		{
 			str_del(&line);
-			return (err_ptr("Error : Dictionnary line not matching pattern"));
+			return (err_ptr("Dictionnary line not matching pattern"));
 		}
 		temp = new_node(new_dict(str_dupto(line, BLANK), \
 		str_revdupto(line, BLANK)));
@@ -71,7 +71,7 @@ t_chain	*get_dict(char *filename)
 			del_node(temp);
 			str_del(&line);
 			clear_dict(&dict);
-			return (err_ptr("Error : Can't append dictionnary node to chain"));
+			return (err_ptr("Can't append dictionnary node to chain"));
 		}
 		str_del(&line);
 	}

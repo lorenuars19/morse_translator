@@ -6,12 +6,12 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:53 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 16:31:52 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 18:42:33 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MORSLATOR_H
-# define MORSLATOR_H
+#ifndef	MORSEC_H
+# define MORSEC_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64

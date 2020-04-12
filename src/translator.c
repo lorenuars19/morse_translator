@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 13:36:47 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 16:59:50 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 19:29:16 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*to_str(t_chain *trsl)
 	}
 	if (!(new = malloc(len + 1 * sizeof(char))))
 	{
-		return (err_ptr("Error : MALLOC ERROR"));
+		return (err_ptr("to_str : malloc fail"));
 	}
 	tmp = trsl;
 	i = 0;
@@ -79,7 +79,7 @@ char	*translator(t_chain *dict, char *input)
 			input++;
 		}
 	 	temp = str_dupto(input, BLANK);
-		append_node(&trsl, new_node(get_by_symbol(dict, temp)));
+		append_node(&trsl, new_node(str_low(get_by_symbol(dict, temp))));
 		str_del(&temp);
 		while (*input && !is_space(*input))
 		{
@@ -100,6 +100,13 @@ char	*rev_translator(t_chain *dict, char *input)
 	while (input && *input)
 	{
 	 	temp = str_upp(str_ndup(input, 1));
+		if (!str_cmp(temp, "<"))
+		{
+			str_del(&temp);
+			temp = str_dupto(input, BLANK);
+			printf("temp %s\n",temp);
+			input += str_len(temp) - 1;
+		}
 		if ((word = get_by_word(dict, temp)) == NULL)
 		{
 			str_del(&temp);

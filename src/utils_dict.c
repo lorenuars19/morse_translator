@@ -6,7 +6,7 @@
 /*   By: lorenuar <lorenuar@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:53:06 by lorenuar          #+#    #+#             */
-/*   Updated: 2020/04/12 13:12:42 by lorenuar         ###   ########.fr       */
+/*   Updated: 2020/04/12 19:23:42 by lorenuar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dict	*new_dict(char *word, char *symb)
 	new = NULL;
 	if (!(new = (t_dict *)malloc(sizeof(t_dict))))
 	{
-		return (err_ptr("MALLOC DICT ERROR"));
+		return (err_ptr("new_dict : malloc fail"));
 	}
 	new->word = word;
 	new->symb = symb;
@@ -28,7 +28,6 @@ t_dict	*new_dict(char *word, char *symb)
 
 void		del_dict(t_dict *dict)
 {
-	//printf("Dict : <%p> \"%s\" | \"%s\"\n", dict, dict->word, dict->symb);
 	if (dict->word)
 	{
 		free(dict->word);
