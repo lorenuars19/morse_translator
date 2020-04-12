@@ -2,5 +2,5 @@
 Simply overcomplicated morse code translator
 # Usage
 - `make`
-- `./morslator "morse code to translate"`
-- `./morslator -r "string to translate in morse code"`
+- `./morsec ". - / - ."` morse code to translate with ('.-/ ') '/' is the word separator
+- `./morsec -r "text to translate in morse code"`
